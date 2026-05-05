@@ -336,3 +336,19 @@ GO
 
 EXEC sp_StocCritic;
 GO
+
+USE MojitoDB;
+
+UPDATE Angajati 
+SET parola_hash = '0f775e65d2e83ed532d4339d29a4bddf81d27f65c60e0dc8893068c04cfa0b65'
+WHERE username = 'admin';
+
+SELECT username, parola_hash FROM Angajati;
+GO
+
+USE MojitoDB;
+
+UPDATE Angajati 
+SET parola_hash = '60fe74406e7f353ed979f350f2fbb6a2e8690a5fa7d1b0c32983d1d8b3f95f67'
+WHERE username = 'admin';
+GO

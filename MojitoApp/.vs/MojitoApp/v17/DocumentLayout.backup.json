@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{92205F70-6F0F-45C3-99AB-DC365654E842}|MojitoApp.csproj|c:\\users\\alexb\\onedrive\\desktop\\burdeniuc-alex-nicolae-mojito-app\\mojitoapp\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92205F70-6F0F-45C3-99AB-DC365654E842}|MojitoApp.csproj|solutionrelative:views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92205F70-6F0F-45C3-99AB-DC365654E842}|MojitoApp.csproj|c:\\users\\alexb\\onedrive\\desktop\\burdeniuc-alex-nicolae-mojito-app\\mojitoapp\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{92205F70-6F0F-45C3-99AB-DC365654E842}|MojitoApp.csproj|solutionrelative:views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92205F70-6F0F-45C3-99AB-DC365654E842}|MojitoApp.csproj|c:\\users\\alexb\\onedrive\\desktop\\burdeniuc-alex-nicolae-mojito-app\\mojitoapp\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{92205F70-6F0F-45C3-99AB-DC365654E842}|MojitoApp.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{92205F70-6F0F-45C3-99AB-DC365654E842}|MojitoApp.csproj|c:\\users\\alexb\\onedrive\\desktop\\burdeniuc-alex-nicolae-mojito-app\\mojitoapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{92205F70-6F0F-45C3-99AB-DC365654E842}|MojitoApp.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,11 +38,48 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "LoginWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\Views\\LoginWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\LoginWindow.xaml",
+              "ToolTip": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\Views\\LoginWindow.xaml",
+              "RelativeToolTip": "Views\\LoginWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-05T12:11:14.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\Views\\LoginWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\LoginWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\Views\\LoginWindow.xaml.cs",
+              "RelativeToolTip": "Views\\LoginWindow.xaml.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-05T12:11:34.91Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\App.xaml",
+              "RelativeDocumentMoniker": "App.xaml",
+              "ToolTip": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\App.xaml",
+              "RelativeToolTip": "App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-05T12:12:49.294Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "DatabaseHelper.cs",
               "DocumentMoniker": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\Helpers\\DatabaseHelper.cs",
               "RelativeDocumentMoniker": "Helpers\\DatabaseHelper.cs",
@@ -38,46 +87,43 @@
               "RelativeToolTip": "Helpers\\DatabaseHelper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-05T12:04:48.433Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-05T12:04:48.433Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MojitoApp",
+              "DocumentIndex": 5,
+              "Title": "MojitoApp.csproj",
               "DocumentMoniker": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\MojitoApp.csproj",
               "RelativeDocumentMoniker": "MojitoApp.csproj",
-              "ToolTip": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\MojitoApp.csproj*",
-              "RelativeToolTip": "MojitoApp.csproj*",
+              "ToolTip": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\MojitoApp.csproj",
+              "RelativeToolTip": "MojitoApp.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-05T12:02:29.038Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-05T12:02:29.038Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-05T11:58:11.916Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
               "ToolTip": "C:\\Users\\alexb\\OneDrive\\Desktop\\Burdeniuc-Alex-Nicolae-mojito-app\\MojitoApp\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-05T11:58:23.592Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-05T11:58:23.592Z"
             }
           ]
         }

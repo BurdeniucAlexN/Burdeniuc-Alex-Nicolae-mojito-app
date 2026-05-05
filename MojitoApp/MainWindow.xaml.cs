@@ -8,12 +8,7 @@ namespace MojitoApp
         public MainWindow()
         {
             InitializeComponent();
-            if (DatabaseHelper.TestConnection())
-                MessageBox.Show("Conexiune la MojitoDB reușită!", "Success",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
-            else
-                MessageBox.Show("Eroare la conectare!", "Error",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+            
         }
     }
 }
