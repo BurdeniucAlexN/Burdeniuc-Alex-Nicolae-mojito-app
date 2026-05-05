@@ -239,3 +239,100 @@ GO
 
 PRINT 'MojitoDB creat cu succes!';
 GO
+
+
+USE MojitoDB;
+
+INSERT INTO Ingrediente (nume, unitate_masura) VALUES
+('Piept de pui',     'g'),
+('Cartofi',          'g'),
+('Ulei floarea soarelui', 'ml'),
+('Orez pentru sushi','g'),
+('Somon proaspat',   'g'),
+('Vodca',            'ml'),
+('Premix Mojito',    'ml'),
+('Dorna 0.3L',       'buc'),
+('Cola 0.25L',       'buc'),
+('Lamaie',           'g');
+GO
+
+INSERT INTO Stocuri (id_ingredient, cantitate_disponibila, cantitate_minima) VALUES
+(1,  5000, 500),   -- Piept de pui: 5kg, minim 500g
+(2,  8000, 1000),  -- Cartofi: 8kg, minim 1kg
+(3,  3000, 500),   -- Ulei: 3L, minim 500ml
+(4,  5000, 500),   -- Orez sushi: 5kg, minim 500g
+(5,  3000, 300),   -- Somon: 3kg, minim 300g
+(6,  5000, 400),   -- Vodca: 5L, minim 400ml
+(7,  4000, 400),   -- Premix Mojito: 4L, minim 400ml
+(8,  48,   6),     -- Dorna: 48 buc, minim 6
+(9,  48,   6),     -- Cola: 48 buc, minim 6
+(10, 2000, 200);   -- Lamaie: 2kg, minim 200g
+GO
+
+SELECT 
+    I.nume            AS Ingredient,
+    S.cantitate_disponibila AS Disponibil,
+    S.cantitate_minima      AS Minim,
+    I.unitate_masura        AS Unitate
+FROM Stocuri S
+INNER JOIN Ingrediente I ON S.id_ingredient = I.id
+ORDER BY I.nume;
+GO
+
+USE MojitoDB;
+
+-- Inserare produs test (Vodca 40ml portie)
+INSERT INTO Produse (nume, id_categorie, pret, gramaj, tip_scadere) VALUES
+('Vodca Absolut', 5, 45.00, '40ml', 'portie');
+
+-- Inserare vanzare test
+INSERT INTO Vanzari (id_angajat, total) VALUES (1, 45.00);
+
+-- Inserare detaliu vanzare (1 portie vodca)
+INSERT INTO Detalii_Vanzari (id_vanzare, id_produs, cantitate, pret_unitar)
+VALUES (1, 1, 1, 45.00);
+GO
+
+EXEC sp_ScadeStocDupaVanzare @id_vanzare = 1;
+GO
+
+SELECT 
+    I.nume        AS Ingredient,
+    S.cantitate_disponibila AS Dupa_Vanzare,
+    I.unitate_masura AS Unitate
+FROM Stocuri S
+INNER JOIN Ingrediente I ON S.id_ingredient = I.id
+WHERE I.nume = 'Vodca';
+GO
+
+EXEC sp_StocCritic;
+GO
+
+USE MojitoDB;
+
+-- Legam produsul Vodca Absolut (id=1) de ingredientul Vodca (id=6)
+INSERT INTO Produs_Ingrediente (id_produs, id_ingredient, cantitate)
+VALUES (1, 6, 40);  -- 40ml per portie
+GO
+
+-- Rulam din nou procedura
+EXEC sp_ScadeStocDupaVanzare @id_vanzare = 1;
+GO
+
+-- Verificam stocul
+SELECT 
+    I.nume AS Ingredient,
+    S.cantitate_disponibila AS Dupa_Vanzare,
+    I.unitate_masura AS Unitate
+FROM Stocuri S
+INNER JOIN Ingrediente I ON S.id_ingredient = I.id
+WHERE I.nume = 'Vodca';
+GO
+
+-- Simulam un stoc critic pentru test
+UPDATE Stocuri SET cantitate_disponibila = 3 WHERE id_ingredient = 8; -- Dorna sub minim
+UPDATE Stocuri SET cantitate_disponibila = 2 WHERE id_ingredient = 9; -- Cola sub minim
+GO
+
+EXEC sp_StocCritic;
+GO
