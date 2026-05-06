@@ -68,3 +68,4 @@ C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\
 C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\ref\MojitoApp.dll
 C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\LoginWindow.baml
 C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\LoginWindow.g.cs
+C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\App.baml

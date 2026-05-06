@@ -1,12 +1,95 @@
 ﻿<Window x:Class="MojitoApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MojitoApp"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Mojito — Gestiune" Height="700" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        Background="#1A1A1A">
 
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- SIDEBAR -->
+        <Border Grid.Column="0" Background="#111111"
+                BorderBrush="#C8A96E" BorderThickness="0,0,1,0">
+            <StackPanel>
+
+                <!-- Logo + User -->
+                <StackPanel Background="#0D0D0D" Height="120"
+                            VerticalAlignment="Top">
+                    <Image Source="/Assets/logo.png" Height="55"
+                           Margin="0,15,0,5"
+                           HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtAngajat"
+                               Text="Admin" FontSize="12"
+                               Foreground="#888888"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Butoane navigare -->
+                <Button Content="🍽  Bucătărie Europeană"
+                        Style="{StaticResource NavButton}"
+                        Click="Nav_Click" Tag="european"/>
+
+                <Button Content="🍣  Bucătărie Japoneză"
+                        Style="{StaticResource NavButton}"
+                        Click="Nav_Click" Tag="japonez"/>
+
+                <Button Content="🍹  Bar &amp; Cocktailuri"
+                        Style="{StaticResource NavButton}"
+                        Click="Nav_Click" Tag="bar"/>
+
+                <Button Content="🥤  Băuturi"
+                        Style="{StaticResource NavButton}"
+                        Click="Nav_Click" Tag="bauturi"/>
+
+                <Button Content="📦  Stocuri"
+                        Style="{StaticResource NavButton}"
+                        Click="Nav_Click" Tag="stocuri"/>
+
+                <Button Content="📊  Rapoarte"
+                        Style="{StaticResource NavButton}"
+                        Click="Nav_Click" Tag="rapoarte"/>
+
+                <Button Content="👥  Angajați"
+                        Style="{StaticResource NavButton}"
+                        Click="Nav_Click" Tag="angajati"/>
+
+                <!-- Logout -->
+                <Button Content="⏻  Deconectare"
+                        Margin="15,40,15,0"
+                        Height="38" Background="Transparent"
+                        BorderBrush="#C8A96E" BorderThickness="1"
+                        Foreground="#C8A96E" FontSize="13"
+                        Cursor="Hand" Click="Logout_Click"/>
+
+            </StackPanel>
+        </Border>
+
+        <!-- CONTENT AREA -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Border Grid.Row="0" Background="#111111"
+                    BorderBrush="#C8A96E" BorderThickness="0,0,0,1">
+                <TextBlock x:Name="txtPagina"
+                           Text="Bun venit la Mojito"
+                           FontSize="20" FontWeight="Bold"
+                           Foreground="#C8A96E"
+                           VerticalAlignment="Center"
+                           Margin="25,0,0,0"/>
+            </Border>
+
+            <!-- Frame pagini -->
+            <Frame x:Name="MainFrame" Grid.Row="1"
+                   Background="#1A1A1A"
+                   NavigationUIVisibility="Hidden"/>
+        </Grid>
     </Grid>
 </Window>
