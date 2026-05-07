@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\App.xaml
-21594365281
+4239619699
 22-1000577183
-171900359132
+19-1000554157
 215-2117262477
-MainWindow.xaml;Views\LoginWindow.xaml;
+MainWindow.xaml;Views\EuropeanPage.xaml;Views\JapanesePage.xaml;Views\LoginWindow.xaml;
 
 False
 

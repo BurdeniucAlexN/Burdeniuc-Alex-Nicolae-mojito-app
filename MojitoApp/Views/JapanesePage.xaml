@@ -1,0 +1,89 @@
+﻿<Page x:Class="MojitoApp.Views.JapanesePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#1A1A1A">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Bucătărie Japoneză"
+                   FontSize="24" FontWeight="Bold"
+                   Foreground="#C8A96E" Margin="0,0,0,20"/>
+
+        <ListView x:Name="listProduse" Grid.Row="1"
+                  Background="#2A2A2A" BorderThickness="0"
+                  Foreground="White" FontSize="14"
+                  SelectionChanged="listProduse_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Produs" Width="220"
+                                    DisplayMemberBinding="{Binding Nume}"/>
+                    <GridViewColumn Header="Gramaj" Width="80"
+                                    DisplayMemberBinding="{Binding Gramaj}"/>
+                    <GridViewColumn Header="Preț (MDL)" Width="100"
+                                    DisplayMemberBinding="{Binding Pret}"/>
+                    <GridViewColumn Header="Ingrediente" Width="350"
+                                    DisplayMemberBinding="{Binding Ingrediente}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Cantitate + Total -->
+        <Grid Grid.Row="2" Margin="0,15,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Cantitate:"
+                       Foreground="#C8A96E" FontSize="14"
+                       VerticalAlignment="Center" Margin="0,0,10,0"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="-" x:Name="btnMinus"
+                        Background="#2A2A2A" Foreground="White"
+                        BorderBrush="#C8A96E" BorderThickness="1"
+                        FontSize="16" Cursor="Hand"
+                        Click="btnMinus_Click"/>
+                <TextBox Grid.Column="1" x:Name="txtCantitate"
+                         Text="1" FontSize="14"
+                         Background="#2A2A2A" Foreground="White"
+                         BorderBrush="#C8A96E" BorderThickness="1"
+                         TextAlignment="Center"
+                         VerticalContentAlignment="Center"/>
+                <Button Grid.Column="2" Content="+" x:Name="btnPlus"
+                        Background="#2A2A2A" Foreground="White"
+                        BorderBrush="#C8A96E" BorderThickness="1"
+                        FontSize="16" Cursor="Hand"
+                        Click="btnPlus_Click"/>
+            </Grid>
+
+            <TextBlock Grid.Column="3" x:Name="txtTotal"
+                       Text="Total: 0 MDL"
+                       Foreground="#C8A96E" FontSize="16"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="20,0,0,0"/>
+        </Grid>
+
+        <Button Grid.Row="3" x:Name="btnTasteaza"
+                Content="TASTEAZĂ PRODUS SELECTAT"
+                Height="48" Margin="0,5,0,0"
+                Background="#C8A96E" Foreground="#1A1A1A"
+                FontWeight="Bold" FontSize="14"
+                BorderThickness="0" Cursor="Hand"
+                Click="btnTasteaza_Click"/>
+    </Grid>
+</Page>

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using MojitoApp.Views;
 
 namespace MojitoApp
 {
@@ -26,6 +27,13 @@ namespace MojitoApp
                 "angajati" => "Angajați",
                 _ => "Bun venit la Mojito"
             };
+
+            MainFrame.Navigate(tag switch
+            {
+                "european" => new EuropeanPage(),
+                "japonez" => new JapanesePage(),
+                _ => null
+            });
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
