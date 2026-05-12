@@ -2,13 +2,13 @@
 using System.Windows.Controls;
 using Microsoft.Data.SqlClient;
 using MojitoApp.Helpers;
+using MojitoApp.Models;
 using MojitoApp.Services;
 
 namespace MojitoApp.Views
 {
     public partial class EuropeanPage : Page
     {
-        private readonly VanzareService _vanzareService = new();
         private List<ProdusDisplay> _produse = new();
 
         public EuropeanPage()
@@ -82,7 +82,7 @@ namespace MojitoApp.Views
             }
         }
 
-        private void btnTasteaza_Click(object sender, RoutedEventArgs e)
+        private void btnAdaugaInCos_Click(object sender, RoutedEventArgs e)
         {
             if (listProduse.SelectedItem is not ProdusDisplay produs)
             {
@@ -98,25 +98,20 @@ namespace MojitoApp.Views
                 return;
             }
 
-            decimal total = produs.Pret * cantitate;
-
-            var rezultat = MessageBox.Show(
-                $"Tastați: {produs.Nume}\nCantitate: {cantitate}\nTotal: {total} MDL",
-                "Confirmare", MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
-
-            if (rezultat == MessageBoxResult.Yes)
+            CosComenzi.AdaugaProdus(new CosItem
             {
-                int idVanzare = _vanzareService.CreeazaVanzare(1, total);
-                _vanzareService.AdaugaDetaliu(idVanzare, produs.Id, cantitate, produs.Pret);
-                _vanzareService.ScadeStoc(idVanzare);
+                IdProdus = produs.Id,
+                Nume = produs.Nume,
+                Pret = produs.Pret,
+                Cantitate = cantitate,
+                TipScadere = "ingrediente"
+            });
 
-                MessageBox.Show($"✅ {produs.Nume} x{cantitate} tastat!\nTotal: {total} MDL",
-                    "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show($"✅ {produs.Nume} x{cantitate} adăugat în coș!",
+                "Adăugat", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                txtCantitate.Text = "1";
-                txtTotal.Text = "Total: 0 MDL";
-            }
+            txtCantitate.Text = "1";
+            txtTotal.Text = "Total: 0 MDL";
         }
     }
 }

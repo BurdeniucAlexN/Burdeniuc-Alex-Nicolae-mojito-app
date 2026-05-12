@@ -2,13 +2,12 @@
 using System.Windows.Controls;
 using Microsoft.Data.SqlClient;
 using MojitoApp.Helpers;
-using MojitoApp.Services;
+using MojitoApp.Models;
 
 namespace MojitoApp.Views
 {
     public partial class BarPage : Page
     {
-        private readonly VanzareService _vanzareService = new();
         private ProdusDisplay? _produsSelectat = null;
 
         public BarPage()
@@ -87,12 +86,10 @@ namespace MojitoApp.Views
         {
             if (_produsSelectat != null &&
                 int.TryParse(txtCantitate.Text, out int cant))
-            {
                 txtTotal.Text = $"Total: {_produsSelectat.Pret * cant} MDL";
-            }
         }
 
-        private void btnTasteaza_Click(object sender, RoutedEventArgs e)
+        private void btnAdaugaInCos_Click(object sender, RoutedEventArgs e)
         {
             if (_produsSelectat == null)
             {
@@ -108,27 +105,21 @@ namespace MojitoApp.Views
                 return;
             }
 
-            decimal total = _produsSelectat.Pret * cantitate;
-
-            var rezultat = MessageBox.Show(
-                $"Tastați: {_produsSelectat.Nume}\nCantitate: {cantitate}\nTotal: {total} MDL",
-                "Confirmare", MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
-
-            if (rezultat == MessageBoxResult.Yes)
+            CosComenzi.AdaugaProdus(new CosItem
             {
-                int idVanzare = _vanzareService.CreeazaVanzare(1, total);
-                _vanzareService.AdaugaDetaliu(idVanzare, _produsSelectat.Id, cantitate, _produsSelectat.Pret);
-                _vanzareService.ScadeStoc(idVanzare);
+                IdProdus = _produsSelectat.Id,
+                Nume = _produsSelectat.Nume,
+                Pret = _produsSelectat.Pret,
+                Cantitate = cantitate,
+                TipScadere = "premix"
+            });
 
-                MessageBox.Show(
-                    $"✅ {_produsSelectat.Nume} x{cantitate} tastat!\nTotal: {total} MDL",
-                    "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show($"✅ {_produsSelectat.Nume} x{cantitate} adăugat în coș!",
+                "Adăugat", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                txtCantitate.Text = "1";
-                txtTotal.Text = "Total: 0 MDL";
-                _produsSelectat = null;
-            }
+            txtCantitate.Text = "1";
+            txtTotal.Text = "Total: 0 MDL";
+            _produsSelectat = null;
         }
     }
 }

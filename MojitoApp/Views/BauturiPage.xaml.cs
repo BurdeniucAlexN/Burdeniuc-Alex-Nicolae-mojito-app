@@ -2,13 +2,12 @@
 using System.Windows.Controls;
 using Microsoft.Data.SqlClient;
 using MojitoApp.Helpers;
-using MojitoApp.Services;
+using MojitoApp.Models;
 
 namespace MojitoApp.Views
 {
     public partial class BauturiPage : Page
     {
-        private readonly VanzareService _vanzareService = new();
         private ProdusDisplay? _produsSelectat = null;
 
         public BauturiPage()
@@ -19,23 +18,14 @@ namespace MojitoApp.Views
 
         private void IncarcaProduse()
         {
-            // Ceaiuri homemade + Ronfeld
             listCeaiuri.ItemsSource = GetProduse(172, 186);
-            // Cafea + Matcha
             listCafea.ItemsSource = GetProduse(176, 182);
-            // Fresh + Soft
             listSoft.ItemsSource = GetProduse(187, 200);
-            // Whisky (Scotch + Irish + American + Japanese)
             listWhisky.ItemsSource = GetProduse(201, 225);
-            // Vodca + Gin
             listVodcaGin.ItemsSource = GetProduse(230, 241);
-            // Rom + Tequila
             listRomTequila.ItemsSource = GetProduse(226, 246);
-            // Coniac + Divin
             listConiac.ItemsSource = GetProduse(247, 257);
-            // Bere
             listBere.ItemsSource = GetProduse(258, 263);
-            // Vin & Sampanie
             listVin.ItemsSource = GetProduse(264, 312);
         }
 
@@ -100,7 +90,7 @@ namespace MojitoApp.Views
                 txtTotal.Text = $"Total: {_produsSelectat.Pret * cant} MDL";
         }
 
-        private void btnTasteaza_Click(object sender, RoutedEventArgs e)
+        private void btnAdaugaInCos_Click(object sender, RoutedEventArgs e)
         {
             if (_produsSelectat == null)
             {
@@ -116,26 +106,21 @@ namespace MojitoApp.Views
                 return;
             }
 
-            decimal total = _produsSelectat.Pret * cantitate;
-
-            var rezultat = MessageBox.Show(
-                $"Tastați: {_produsSelectat.Nume}\nCantitate: {cantitate}\nTotal: {total} MDL",
-                "Confirmare", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (rezultat == MessageBoxResult.Yes)
+            CosComenzi.AdaugaProdus(new CosItem
             {
-                int idVanzare = _vanzareService.CreeazaVanzare(1, total);
-                _vanzareService.AdaugaDetaliu(idVanzare, _produsSelectat.Id, cantitate, _produsSelectat.Pret);
-                _vanzareService.ScadeStoc(idVanzare);
+                IdProdus = _produsSelectat.Id,
+                Nume = _produsSelectat.Nume,
+                Pret = _produsSelectat.Pret,
+                Cantitate = cantitate,
+                TipScadere = _produsSelectat.TipScadere
+            });
 
-                MessageBox.Show(
-                    $"✅ {_produsSelectat.Nume} x{cantitate} tastat!\nTotal: {total} MDL",
-                    "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show($"✅ {_produsSelectat.Nume} x{cantitate} adăugat în coș!",
+                "Adăugat", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                txtCantitate.Text = "1";
-                txtTotal.Text = "Total: 0 MDL";
-                _produsSelectat = null;
-            }
+            txtCantitate.Text = "1";
+            txtTotal.Text = "Total: 0 MDL";
+            _produsSelectat = null;
         }
     }
 }

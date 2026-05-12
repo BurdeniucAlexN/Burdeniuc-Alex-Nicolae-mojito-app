@@ -108,7 +108,7 @@ namespace MojitoApp.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MojitoApp;component/views/stocuripage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MojitoApp;V1.0.0.0;component/views/stocuripage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\StocuriPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

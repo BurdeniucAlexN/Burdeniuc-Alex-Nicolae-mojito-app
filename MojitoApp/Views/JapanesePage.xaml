@@ -77,11 +77,11 @@
         </Grid>
 
         <Button Grid.Row="3" x:Name="btnTasteaza"
-                Content="TASTEAZĂ PRODUS SELECTAT"
+                Content="🛒 ADAUGĂ ÎN COȘ"
                 Height="48" Margin="0,5,0,0"
                 Background="#C8A96E" Foreground="#1A1A1A"
                 FontWeight="Bold" FontSize="14"
                 BorderThickness="0" Cursor="Hand"
-                Click="btnTasteaza_Click"/>
+                Click="btnAdaugaInCos_Click"/>
     </Grid>
 </Page>
