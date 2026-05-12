@@ -34,6 +34,7 @@ namespace MojitoApp
                 "japonez" => new JapanesePage(),
                 "bar" => new BarPage(),
                 "bauturi" => new BauturiPage(),
+                "stocuri" => new StocuriPage(),
                 _ => null
             });
         }

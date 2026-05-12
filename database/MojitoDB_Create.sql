@@ -2191,3 +2191,280 @@ GO
 
 PRINT 'Retete salate, supe si paste inserate cu succes!';
 GO
+
+USE MojitoDB;
+
+-- Verificam ce ingredient e legat de Coca-Cola produs
+SELECT P.id, P.nume, PI.id_ingredient, I.nume AS ingredient, 
+       S.cantitate_disponibila, S.cantitate_minima
+FROM Produse P
+INNER JOIN Produs_Ingrediente PI ON P.id = PI.id_produs
+INNER JOIN Ingrediente I ON PI.id_ingredient = I.id
+INNER JOIN Stocuri S ON I.id = S.id_ingredient
+WHERE P.id = 191;
+GO
+
+
+USE MojitoDB;
+
+-- Verificam ID-ul corect al ingredientului Coca-Cola 250ml
+SELECT id, nume FROM Ingrediente WHERE nume LIKE '%Coca%';
+GO
+
+USE MojitoDB;
+
+-- Fixam toate soft drinks cu ingredientele corecte
+DELETE FROM Produs_Ingrediente WHERE id_produs IN (191,192,193,194,195,196,197,198,199,200);
+
+INSERT INTO Produs_Ingrediente VALUES
+(191, 314, 1),  -- Coca-Cola
+(192, 315, 1),  -- Coca-Cola Zero
+(193, 316, 1),  -- Fanta (verificam ID-ul)
+(194, 317, 1),  -- Sprite
+(195, 318, 1),  -- Schweppes
+(196, 319, 1),  -- Dorna 330ml
+(197, 320, 1),  -- Dorna 750ml
+(198, 321, 1),  -- Borjomi
+(199, 322, 1),  -- Juice
+(200, 323, 1);  -- Burn Energy
+GO
+
+SELECT id, nume FROM Ingrediente 
+WHERE id BETWEEN 314 AND 325
+ORDER BY id;
+GO
+
+USE MojitoDB;
+
+DELETE FROM Produs_Ingrediente WHERE id_produs IN (191,192,193,194,195,196,197,198,199,200);
+
+INSERT INTO Produs_Ingrediente VALUES
+(191, 314, 1),
+(192, 315, 1),
+(193, 316, 1),
+(194, 317, 1),
+(195, 318, 1),
+(196, 319, 1),
+(197, 320, 1),
+(198, 321, 1),
+(199, 322, 1),
+(200, 323, 1);
+GO
+
+SELECT P.id, P.nume, PI.id_ingredient, I.nume AS ingredient
+FROM Produse P
+INNER JOIN Produs_Ingrediente PI ON P.id = PI.id_produs
+INNER JOIN Ingrediente I ON PI.id_ingredient = I.id
+WHERE P.id BETWEEN 201 AND 215
+ORDER BY P.id;
+GO
+
+USE MojitoDB;
+
+-- Stergem toate retetele gresite pentru bauturi spirtoase, bere, vin
+DELETE FROM Produs_Ingrediente WHERE id_produs BETWEEN 201 AND 312;
+
+-- Verificam ID-urile corecte ale ingredientelor spirtoase
+SELECT id, nume FROM Ingrediente 
+WHERE id BETWEEN 324 AND 440
+ORDER BY id;
+GO
+
+
+USE MojitoDB;
+
+-- Stergem toate retetele gresite
+DELETE FROM Produs_Ingrediente WHERE id_produs BETWEEN 201 AND 312;
+
+-- SCOTCH WHISKY (40ml per portie)
+INSERT INTO Produs_Ingrediente VALUES (201, 324, 40);
+INSERT INTO Produs_Ingrediente VALUES (202, 325, 40);
+INSERT INTO Produs_Ingrediente VALUES (203, 326, 40);
+INSERT INTO Produs_Ingrediente VALUES (204, 327, 40);
+INSERT INTO Produs_Ingrediente VALUES (205, 328, 40);
+INSERT INTO Produs_Ingrediente VALUES (206, 329, 40);
+INSERT INTO Produs_Ingrediente VALUES (207, 330, 40);
+INSERT INTO Produs_Ingrediente VALUES (208, 331, 40);
+INSERT INTO Produs_Ingrediente VALUES (209, 332, 40);
+INSERT INTO Produs_Ingrediente VALUES (210, 333, 40);
+INSERT INTO Produs_Ingrediente VALUES (211, 334, 40);
+INSERT INTO Produs_Ingrediente VALUES (212, 335, 40);
+
+-- IRISH WHISKY
+INSERT INTO Produs_Ingrediente VALUES (213, 336, 40);
+INSERT INTO Produs_Ingrediente VALUES (214, 337, 40);
+INSERT INTO Produs_Ingrediente VALUES (215, 338, 40);
+
+-- AMERICAN WHISKEY
+INSERT INTO Produs_Ingrediente VALUES (216, 339, 40);
+INSERT INTO Produs_Ingrediente VALUES (217, 340, 40);
+INSERT INTO Produs_Ingrediente VALUES (218, 341, 40);
+INSERT INTO Produs_Ingrediente VALUES (219, 342, 40);
+INSERT INTO Produs_Ingrediente VALUES (220, 343, 40);
+INSERT INTO Produs_Ingrediente VALUES (221, 344, 40);
+
+-- JAPANESE WHISKEY
+INSERT INTO Produs_Ingrediente VALUES (222, 345, 40);
+INSERT INTO Produs_Ingrediente VALUES (223, 346, 40);
+INSERT INTO Produs_Ingrediente VALUES (224, 347, 40);
+INSERT INTO Produs_Ingrediente VALUES (225, 348, 40);
+
+-- RUM
+INSERT INTO Produs_Ingrediente VALUES (226, 349, 40);
+INSERT INTO Produs_Ingrediente VALUES (227, 350, 40);
+INSERT INTO Produs_Ingrediente VALUES (228, 351, 40);
+INSERT INTO Produs_Ingrediente VALUES (229, 352, 40);
+
+-- VODCA
+INSERT INTO Produs_Ingrediente VALUES (230, 353, 40);
+INSERT INTO Produs_Ingrediente VALUES (231, 354, 40);
+INSERT INTO Produs_Ingrediente VALUES (232, 355, 40);
+INSERT INTO Produs_Ingrediente VALUES (233, 356, 40);
+
+-- GIN
+INSERT INTO Produs_Ingrediente VALUES (234, 357, 40);
+INSERT INTO Produs_Ingrediente VALUES (235, 358, 40);
+INSERT INTO Produs_Ingrediente VALUES (236, 359, 40);
+INSERT INTO Produs_Ingrediente VALUES (237, 360, 40);
+INSERT INTO Produs_Ingrediente VALUES (238, 361, 40);
+INSERT INTO Produs_Ingrediente VALUES (239, 362, 40);
+INSERT INTO Produs_Ingrediente VALUES (240, 363, 40);
+INSERT INTO Produs_Ingrediente VALUES (241, 364, 40);
+
+-- TEQUILA
+INSERT INTO Produs_Ingrediente VALUES (242, 365, 40);
+INSERT INTO Produs_Ingrediente VALUES (243, 366, 40);
+INSERT INTO Produs_Ingrediente VALUES (244, 367, 40);
+INSERT INTO Produs_Ingrediente VALUES (245, 368, 40);
+INSERT INTO Produs_Ingrediente VALUES (246, 369, 40);
+
+-- CONIAC
+INSERT INTO Produs_Ingrediente VALUES (247, 370, 40);
+INSERT INTO Produs_Ingrediente VALUES (248, 371, 40);
+INSERT INTO Produs_Ingrediente VALUES (249, 372, 40);
+INSERT INTO Produs_Ingrediente VALUES (250, 373, 40);
+INSERT INTO Produs_Ingrediente VALUES (251, 374, 40);
+
+-- DIVIN MOLDOVENESC
+INSERT INTO Produs_Ingrediente VALUES (252, 375, 40);
+INSERT INTO Produs_Ingrediente VALUES (253, 376, 40);
+INSERT INTO Produs_Ingrediente VALUES (254, 377, 40);
+INSERT INTO Produs_Ingrediente VALUES (255, 378, 40);
+INSERT INTO Produs_Ingrediente VALUES (256, 379, 40);
+INSERT INTO Produs_Ingrediente VALUES (257, 380, 40);
+
+-- BERE DRAFT (400ml)
+INSERT INTO Produs_Ingrediente VALUES (258, 381, 400);
+INSERT INTO Produs_Ingrediente VALUES (259, 382, 400);
+INSERT INTO Produs_Ingrediente VALUES (260, 383, 400);
+
+-- BERE STICLA (1 bucata)
+INSERT INTO Produs_Ingrediente VALUES (261, 384, 1);
+INSERT INTO Produs_Ingrediente VALUES (262, 385, 1);
+INSERT INTO Produs_Ingrediente VALUES (263, 386, 1);
+
+-- SAMPANIE & VIN SPUMANT (1 bucata)
+INSERT INTO Produs_Ingrediente VALUES (264, 387, 1);
+INSERT INTO Produs_Ingrediente VALUES (265, 388, 1);
+INSERT INTO Produs_Ingrediente VALUES (266, 389, 1);
+INSERT INTO Produs_Ingrediente VALUES (267, 390, 1);
+INSERT INTO Produs_Ingrediente VALUES (268, 391, 1);
+INSERT INTO Produs_Ingrediente VALUES (269, 392, 1);
+INSERT INTO Produs_Ingrediente VALUES (270, 393, 1);
+INSERT INTO Produs_Ingrediente VALUES (271, 394, 1);
+INSERT INTO Produs_Ingrediente VALUES (272, 395, 1);
+INSERT INTO Produs_Ingrediente VALUES (273, 396, 1);
+INSERT INTO Produs_Ingrediente VALUES (274, 397, 1);
+INSERT INTO Produs_Ingrediente VALUES (275, 398, 1);
+INSERT INTO Produs_Ingrediente VALUES (276, 399, 1);
+INSERT INTO Produs_Ingrediente VALUES (277, 400, 1);
+INSERT INTO Produs_Ingrediente VALUES (278, 401, 1);
+INSERT INTO Produs_Ingrediente VALUES (279, 402, 1);
+INSERT INTO Produs_Ingrediente VALUES (280, 403, 1);
+INSERT INTO Produs_Ingrediente VALUES (281, 404, 1);
+INSERT INTO Produs_Ingrediente VALUES (282, 405, 1);
+
+-- VIN LA STICLA (1 bucata)
+INSERT INTO Produs_Ingrediente VALUES (283, 406, 1);
+INSERT INTO Produs_Ingrediente VALUES (284, 407, 1);
+INSERT INTO Produs_Ingrediente VALUES (285, 408, 1);
+INSERT INTO Produs_Ingrediente VALUES (286, 409, 1);
+INSERT INTO Produs_Ingrediente VALUES (287, 410, 1);
+INSERT INTO Produs_Ingrediente VALUES (288, 411, 1);
+INSERT INTO Produs_Ingrediente VALUES (289, 412, 1);
+INSERT INTO Produs_Ingrediente VALUES (290, 413, 1);
+INSERT INTO Produs_Ingrediente VALUES (291, 414, 1);
+INSERT INTO Produs_Ingrediente VALUES (292, 415, 1);
+INSERT INTO Produs_Ingrediente VALUES (293, 416, 1);
+INSERT INTO Produs_Ingrediente VALUES (294, 417, 1);
+INSERT INTO Produs_Ingrediente VALUES (295, 418, 1);
+INSERT INTO Produs_Ingrediente VALUES (296, 419, 1);
+INSERT INTO Produs_Ingrediente VALUES (297, 420, 1);
+INSERT INTO Produs_Ingrediente VALUES (298, 421, 1);
+INSERT INTO Produs_Ingrediente VALUES (299, 422, 1);
+INSERT INTO Produs_Ingrediente VALUES (300, 423, 1);
+INSERT INTO Produs_Ingrediente VALUES (301, 424, 1);
+INSERT INTO Produs_Ingrediente VALUES (302, 425, 1);
+INSERT INTO Produs_Ingrediente VALUES (303, 426, 1);
+INSERT INTO Produs_Ingrediente VALUES (304, 427, 1);
+INSERT INTO Produs_Ingrediente VALUES (305, 428, 1);
+INSERT INTO Produs_Ingrediente VALUES (306, 429, 1);
+
+-- VIN LA PAHAR (0.2 dintr-o sticla)
+INSERT INTO Produs_Ingrediente VALUES (307, 430, 1);
+INSERT INTO Produs_Ingrediente VALUES (308, 431, 1);
+INSERT INTO Produs_Ingrediente VALUES (309, 432, 1);
+INSERT INTO Produs_Ingrediente VALUES (310, 433, 1);
+INSERT INTO Produs_Ingrediente VALUES (311, 434, 1);
+INSERT INTO Produs_Ingrediente VALUES (312, 435, 1);
+GO
+
+PRINT 'Fix retete bauturi aplicat cu succes!';
+GO
+
+USE MojitoDB;
+
+-- Testam: vindem 1 Finlandia (id 232)
+INSERT INTO Vanzari (id_angajat, total) VALUES (1, 65.00);
+DECLARE @id INT = SCOPE_IDENTITY();
+INSERT INTO Detalii_Vanzari (id_vanzare, id_produs, cantitate, pret_unitar) 
+VALUES (@id, 232, 1, 65.00);
+EXEC sp_ScadeStocDupaVanzare @id_vanzare = @id;
+
+-- Verificam stocul Finlandia inainte si dupa
+SELECT I.nume, S.cantitate_disponibila, I.unitate_masura
+FROM Stocuri S
+INNER JOIN Ingrediente I ON S.id_ingredient = I.id
+WHERE I.nume = 'Finlandia';
+GO
+
+USE MojitoDB;
+
+-- Setam minimul realist pentru spirtoase: 700ml (1 sticla)
+UPDATE Stocuri 
+SET cantitate_minima = 700
+WHERE id_ingredient BETWEEN 324 AND 380;
+
+-- Setam minimul pentru bere draft: 5000ml (5L)
+UPDATE Stocuri 
+SET cantitate_minima = 5000
+WHERE id_ingredient BETWEEN 381 AND 383;
+
+-- Setam minimul pentru bere sticla: 6 bucati
+UPDATE Stocuri
+SET cantitate_minima = 6
+WHERE id_ingredient BETWEEN 384 AND 386;
+
+-- Setam minimul pentru vin si sampanie: 2 sticle
+UPDATE Stocuri
+SET cantitate_minima = 2
+WHERE id_ingredient BETWEEN 387 AND 435;
+GO
+
+
+-- Resetam stocurile spirtoase la 6 sticle (6 x 700ml = 4200ml)
+UPDATE Stocuri
+SET cantitate_disponibila = 4200
+WHERE id_ingredient BETWEEN 324 AND 380
+AND cantitate_disponibila < 700;
+GO

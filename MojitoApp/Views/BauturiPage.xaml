@@ -11,9 +11,6 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Băuturi"
-                   FontSize="24" FontWeight="Bold"
-                   Foreground="#C8A96E" Margin="0,0,0,10"/>
 
         <TabControl Grid.Row="1" Background="#1A1A1A"
                     BorderBrush="#C8A96E" BorderThickness="1">

@@ -1,0 +1,200 @@
+﻿<Page x:Class="MojitoApp.Views.StocuriPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#1A1A1A">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <TabControl Grid.Row="1" Background="#1A1A1A"
+                    BorderBrush="#C8A96E" BorderThickness="1">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Background" Value="#2A2A2A"/>
+                    <Setter Property="Foreground" Value="#CCCCCC"/>
+                    <Setter Property="Padding" Value="10,5"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#C8A96E"/>
+                            <Setter Property="Foreground" Value="#1A1A1A"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TabControl.Resources>
+
+            <!-- Stocuri Ingrediente -->
+            <TabItem Header="Ingrediente">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ListView x:Name="listStocuri" Grid.Row="0"
+                              Background="#2A2A2A" BorderThickness="0"
+                              Foreground="White" FontSize="13">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Ingredient" Width="220"
+                                                DisplayMemberBinding="{Binding NumeIngredient}"/>
+                                <GridViewColumn Header="Disponibil" Width="100"
+                                                DisplayMemberBinding="{Binding CantitateDisponibila}"/>
+                                <GridViewColumn Header="Minim" Width="80"
+                                                DisplayMemberBinding="{Binding CantitateMinima}"/>
+                                <GridViewColumn Header="UM" Width="60"
+                                                DisplayMemberBinding="{Binding UnitateMasura}"/>
+                                <GridViewColumn Header="Status" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Status}"
+                                                       Foreground="{Binding StatusColor}"
+                                                       FontWeight="Bold"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <!-- Actualizare stoc -->
+                    <Border Grid.Row="1" Background="#2A2A2A"
+                            BorderBrush="#C8A96E" BorderThickness="1"
+                            Margin="0,10,0,0" Padding="15">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       x:Name="txtIngredientSelectat"
+                                       Text="Selectați un ingredient din listă"
+                                       Foreground="#888888" FontSize="13"
+                                       VerticalAlignment="Center"/>
+
+                            <TextBox Grid.Column="1" x:Name="txtCantitateNoua"
+                                     Height="36" FontSize="13"
+                                     Background="#1A1A1A" Foreground="White"
+                                     BorderBrush="#C8A96E" BorderThickness="1"
+                                     Padding="8,0" Margin="10,0"
+                                     VerticalContentAlignment="Center"
+                                     />
+
+                            <Button Grid.Column="2" Content="ADAUGĂ STOC"
+                                    Height="36" Padding="15,0"
+                                    Background="#C8A96E" Foreground="#1A1A1A"
+                                    FontWeight="Bold" FontSize="12"
+                                    BorderThickness="0" Cursor="Hand"
+                                    Click="btnAdaugaStoc_Click"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- Stoc Manual -->
+            <TabItem Header="Stoc Manual">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ListView x:Name="listStocManual" Grid.Row="0"
+                              Background="#2A2A2A" BorderThickness="0"
+                              Foreground="White" FontSize="13">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Produs" Width="220"
+                                                DisplayMemberBinding="{Binding NumeProdus}"/>
+                                <GridViewColumn Header="Cantitate" Width="100"
+                                                DisplayMemberBinding="{Binding Cantitate}"/>
+                                <GridViewColumn Header="Minim" Width="80"
+                                                DisplayMemberBinding="{Binding CantitateMinima}"/>
+                                <GridViewColumn Header="Unitate" Width="80"
+                                                DisplayMemberBinding="{Binding Unitate}"/>
+                                <GridViewColumn Header="Status" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Status}"
+                                                       Foreground="{Binding StatusColor}"
+                                                       FontWeight="Bold"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <!-- Actualizare stoc manual -->
+                    <Border Grid.Row="1" Background="#2A2A2A"
+                            BorderBrush="#C8A96E" BorderThickness="1"
+                            Margin="0,10,0,0" Padding="15">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       x:Name="txtProdusManualSelectat"
+                                       Text="Selectați un produs din listă"
+                                       Foreground="#888888" FontSize="13"
+                                       VerticalAlignment="Center"/>
+
+                            <TextBox Grid.Column="1" x:Name="txtCantitateManual"
+                                     Height="36" FontSize="13"
+                                     Background="#1A1A1A" Foreground="White"
+                                     BorderBrush="#C8A96E" BorderThickness="1"
+                                     Padding="8,0" Margin="10,0"
+                                     VerticalContentAlignment="Center"
+                                     />
+
+                            <Button Grid.Column="2" Content="ACTUALIZEAZĂ"
+                                    Height="36" Padding="15,0"
+                                    Background="#C8A96E" Foreground="#1A1A1A"
+                                    FontWeight="Bold" FontSize="12"
+                                    BorderThickness="0" Cursor="Hand"
+                                    Click="btnActualizeazaManual_Click"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- Stoc Critic -->
+            <TabItem Header="⚠ Stoc Critic">
+                <ListView x:Name="listStocCritic"
+                          Background="#2A2A2A" BorderThickness="0"
+                          Foreground="White" FontSize="13">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Ingredient" Width="220"
+                                            DisplayMemberBinding="{Binding NumeIngredient}"/>
+                            <GridViewColumn Header="Disponibil" Width="100"
+                                            DisplayMemberBinding="{Binding CantitateDisponibila}"/>
+                            <GridViewColumn Header="Minim" Width="80"
+                                            DisplayMemberBinding="{Binding CantitateMinima}"/>
+                            <GridViewColumn Header="UM" Width="60"
+                                            DisplayMemberBinding="{Binding UnitateMasura}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+        </TabControl>
+
+        <!-- Buton Refresh -->
+        <Button Grid.Row="2" Content="🔄 ACTUALIZEAZĂ LISTA"
+                Height="42" Margin="0,10,0,0"
+                Background="#2A2A2A" Foreground="#C8A96E"
+                FontWeight="Bold" FontSize="13"
+                BorderBrush="#C8A96E" BorderThickness="1"
+                Cursor="Hand" Click="btnRefresh_Click"/>
+    </Grid>
+</Page>
