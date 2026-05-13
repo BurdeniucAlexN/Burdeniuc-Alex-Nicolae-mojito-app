@@ -30,13 +30,176 @@ namespace MojitoApp.Views
         public string Status => Cantitate <= CantitateMinima ? "⚠ CRITIC" : "✓ OK";
         public string StatusColor => Cantitate <= CantitateMinima ? "#E74C3C" : "#2ECC71";
     }
-
+    public class ImportStocItem
+    {
+        public int IdIngredient { get; set; }
+        public string Nume { get; set; } = "";
+        public decimal StocCurent { get; set; }
+        public decimal CantitateAdaugata { get; set; }
+        public decimal StocNou => StocCurent + CantitateAdaugata;
+        public string Unitate { get; set; } = "";
+        public string Status { get; set; } = "";
+        public string StatusColor => Status == "✓ Găsit" ? "#2ECC71" : "#E74C3C";
+    }
     public partial class StocuriPage : Page
     {
         private readonly StocService _stocService = new();
         private StocDisplay? _stocSelectat = null;
         private StocManualDisplay? _stocManualSelectat = null;
+        private List<ImportStocItem> _importItems = new();
 
+        private void btnProceseazaStoc_Click(object sender, RoutedEventArgs e)
+        {
+            _importItems = new List<ImportStocItem>();
+            string input = txtImportStoc.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                MessageBox.Show("Introduceți lista!", "Atenție",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            string[] linii = input.Split('\n',
+                StringSplitOptions.RemoveEmptyEntries |
+                StringSplitOptions.TrimEntries);
+
+            foreach (string linie in linii)
+            {
+                if (string.IsNullOrWhiteSpace(linie)) continue;
+
+                string[] parti = linie.Trim().Split(' ');
+                decimal cantitate = 0;
+                string numeIngredient = linie.Trim();
+
+                if (parti.Length > 1 && decimal.TryParse(parti[^1],
+                    System.Globalization.NumberStyles.Any,
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    out decimal cant))
+                {
+                    cantitate = cant;
+                    numeIngredient = string.Join(" ", parti[..^1]).Trim();
+                }
+
+                var ingredient = CautaIngredient(numeIngredient);
+
+                if (ingredient != null)
+                {
+                    _importItems.Add(new ImportStocItem
+                    {
+                        IdIngredient = ingredient.Value.id,
+                        Nume = ingredient.Value.nume,
+                        StocCurent = ingredient.Value.stocCurent,
+                        CantitateAdaugata = cantitate,
+                        Unitate = ingredient.Value.unitate,
+                        Status = "✓ Găsit"
+                    });
+                }
+                else
+                {
+                    _importItems.Add(new ImportStocItem
+                    {
+                        IdIngredient = -1,
+                        Nume = numeIngredient,
+                        StocCurent = 0,
+                        CantitateAdaugata = cantitate,
+                        Unitate = "-",
+                        Status = "✗ Negăsit"
+                    });
+                }
+            }
+
+            listImportStoc.ItemsSource = _importItems;
+        }
+
+        private (int id, string nume, decimal stocCurent, string unitate)? CautaIngredient(string numeCautat)
+        {
+            try
+            {
+                using var conn = DatabaseHelper.GetConnection();
+                conn.Open();
+
+                // Cautare exacta
+                string query = @"SELECT TOP 1 I.id, I.nume, S.cantitate_disponibila, I.unitate_masura
+                        FROM Ingrediente I
+                        INNER JOIN Stocuri S ON I.id = S.id_ingredient
+                        WHERE LOWER(I.nume) = LOWER(@n)";
+                using var cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@n", numeCautat);
+                using var reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                    return (reader.GetInt32(0), reader.GetString(1),
+                            reader.GetDecimal(2), reader.GetString(3));
+
+                reader.Close();
+
+                // Cautare partiala
+                string query2 = @"SELECT TOP 1 I.id, I.nume, S.cantitate_disponibila, I.unitate_masura
+                         FROM Ingrediente I
+                         INNER JOIN Stocuri S ON I.id = S.id_ingredient
+                         WHERE LOWER(I.nume) LIKE LOWER(@n)
+                         ORDER BY LEN(I.nume) ASC";
+                using var cmd2 = new SqlCommand(query2, conn);
+                cmd2.Parameters.AddWithValue("@n", $"%{numeCautat}%");
+                using var reader2 = cmd2.ExecuteReader();
+
+                if (reader2.Read())
+                    return (reader2.GetInt32(0), reader2.GetString(1),
+                            reader2.GetDecimal(2), reader2.GetString(3));
+
+                return null;
+            }
+            catch { return null; }
+        }
+
+        private void btnConfirmaStoc_Click(object sender, RoutedEventArgs e)
+        {
+            var gasite = _importItems.Where(i => i.IdIngredient > 0).ToList();
+
+            if (gasite.Count == 0)
+            {
+                MessageBox.Show("Niciun ingredient găsit!", "Atenție",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var confirmare = MessageBox.Show(
+                $"Actualizați stocul pentru {gasite.Count} ingrediente?",
+                "Confirmare", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (confirmare == MessageBoxResult.Yes)
+            {
+                using var conn = DatabaseHelper.GetConnection();
+                conn.Open();
+
+                foreach (var item in gasite)
+                {
+                    string query = @"UPDATE Stocuri 
+                            SET cantitate_disponibila = cantitate_disponibila + @c
+                            WHERE id_ingredient = @i";
+                    using var cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@c", item.CantitateAdaugata);
+                    cmd.Parameters.AddWithValue("@i", item.IdIngredient);
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show($"✅ Stoc actualizat pentru {gasite.Count} ingrediente!",
+                    "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                txtImportStoc.Clear();
+                _importItems.Clear();
+                listImportStoc.ItemsSource = null;
+                IncarcaDate();
+            }
+        }
+
+        private void btnGolesteImport_Click(object sender, RoutedEventArgs e)
+        {
+            txtImportStoc.Clear();
+            _importItems.Clear();
+            listImportStoc.ItemsSource = null;
+        }
         public StocuriPage()
         {
             InitializeComponent();
@@ -227,5 +390,6 @@ namespace MojitoApp.Views
             MessageBox.Show("Lista actualizată!", "Info",
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
     }
 }

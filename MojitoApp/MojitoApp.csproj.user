@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Views\AngajatiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\BarPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -11,10 +14,16 @@
     <Compile Update="Views\EuropeanPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ImportPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\JapanesePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\LoginWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\RapoartePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\StocuriPage.xaml.cs">

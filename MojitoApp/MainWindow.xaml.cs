@@ -52,6 +52,9 @@ namespace MojitoApp
                 "bar" => new BarPage(),
                 "bauturi" => new BauturiPage(),
                 "stocuri" => new StocuriPage(),
+                "angajati" => new AngajatiPage(),
+                "import" => new ImportPage(),
+                "rapoarte" => new RapoartePage(),
                 _ => null
             });
         }

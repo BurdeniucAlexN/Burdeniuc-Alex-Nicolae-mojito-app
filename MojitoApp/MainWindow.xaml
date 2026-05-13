@@ -45,6 +45,9 @@
                 <Button Content="👥  Angajați"
                         Style="{StaticResource NavButton}"
                         Click="Nav_Click" Tag="angajati"/>
+                <Button Content="📋  Import Comandă"
+                        Style="{StaticResource NavButton}"
+                        Click="Nav_Click" Tag="import"/>
 
                 <Button Content="⏻  Deconectare"
                         Margin="15,40,15,0" Height="38"

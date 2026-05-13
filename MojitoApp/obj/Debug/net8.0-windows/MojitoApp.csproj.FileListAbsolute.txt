@@ -79,3 +79,9 @@ C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\
 C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\BauturiPage.g.cs
 C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\StocuriPage.baml
 C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\StocuriPage.g.cs
+C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\AngajatiPage.baml
+C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\AngajatiPage.g.cs
+C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\ImportPage.baml
+C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\ImportPage.g.cs
+C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\RapoartePage.baml
+C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\RapoartePage.g.cs
