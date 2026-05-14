@@ -85,3 +85,5 @@ C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\
 C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\ImportPage.g.cs
 C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\RapoartePage.baml
 C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\RapoartePage.g.cs
+C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\AdminMeniuPage.baml
+C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\obj\Debug\net8.0-windows\Views\AdminMeniuPage.g.cs

@@ -1,0 +1,237 @@
+﻿<Page x:Class="MojitoApp.Views.AdminMeniuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#1A1A1A">
+
+    <Grid Margin="20">
+        <TabControl Background="#1A1A1A" BorderBrush="#C8A96E" BorderThickness="1">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Background" Value="#2A2A2A"/>
+                    <Setter Property="Foreground" Value="#CCCCCC"/>
+                    <Setter Property="Padding" Value="10,5"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#C8A96E"/>
+                            <Setter Property="Foreground" Value="#1A1A1A"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TabControl.Resources>
+
+            <!-- Produse -->
+            <TabItem Header="🍽 Produse Meniu">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Lista produse -->
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ComboBox Grid.Row="0" x:Name="cmbCategorie"
+                                  Height="34" Margin="0,0,0,10"
+                                  Background="#2A2A2A" Foreground="White"
+                                  BorderBrush="#C8A96E" BorderThickness="1"
+                                  FontSize="13"
+                                  SelectionChanged="cmbCategorie_SelectionChanged"/>
+
+                        <ListView x:Name="listProduseMeniu" Grid.Row="1"
+                                  Background="#2A2A2A" BorderThickness="0"
+                                  Foreground="White" FontSize="13"
+                                  SelectionChanged="listProduseMeniu_SelectionChanged">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="ID" Width="40"
+                                                    DisplayMemberBinding="{Binding Id}"/>
+                                    <GridViewColumn Header="Produs" Width="200"
+                                                    DisplayMemberBinding="{Binding Nume}"/>
+                                    <GridViewColumn Header="Gramaj" Width="80"
+                                                    DisplayMemberBinding="{Binding Gramaj}"/>
+                                    <GridViewColumn Header="Preț" Width="80"
+                                                    DisplayMemberBinding="{Binding Pret}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <Button Grid.Row="2" Content="🗑 ȘTERGE PRODUS SELECTAT"
+                                Height="38" Margin="0,10,0,0"
+                                Background="Transparent" Foreground="#E74C3C"
+                                BorderBrush="#E74C3C" BorderThickness="1"
+                                FontSize="12" Cursor="Hand"
+                                Click="btnStergeProdus_Click"/>
+                    </Grid>
+
+                    <!-- Formular editare/adaugare -->
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" x:Name="txtTitluFormular"
+                                   Text="➕ Produs Nou"
+                                   Foreground="#C8A96E" FontSize="15"
+                                   FontWeight="Bold" Margin="0,0,0,15"/>
+
+                        <TextBlock Grid.Row="1" Text="Nume:"
+                                   Foreground="#C8A96E" FontSize="12"
+                                   Margin="0,0,0,4"/>
+                        <TextBox Grid.Row="2" x:Name="txtNumeProdus"
+                                 Height="34" FontSize="13" Margin="0,0,0,10"
+                                 Background="#2A2A2A" Foreground="White"
+                                 BorderBrush="#C8A96E" BorderThickness="1"
+                                 Padding="8,0" VerticalContentAlignment="Center"/>
+
+                        <TextBlock Grid.Row="3" Text="Preț (MDL):"
+                                   Foreground="#C8A96E" FontSize="12"
+                                   Margin="0,0,0,4"/>
+                        <TextBox Grid.Row="4" x:Name="txtPretProdus"
+                                 Height="34" FontSize="13" Margin="0,0,0,10"
+                                 Background="#2A2A2A" Foreground="White"
+                                 BorderBrush="#C8A96E" BorderThickness="1"
+                                 Padding="8,0" VerticalContentAlignment="Center"/>
+
+                        <TextBlock Grid.Row="5" Text="Gramaj:"
+                                   Foreground="#C8A96E" FontSize="12"
+                                   Margin="0,0,0,4"/>
+                        <TextBox Grid.Row="6" x:Name="txtGramajProdus"
+                                 Height="34" FontSize="13" Margin="0,0,0,15"
+                                 Background="#2A2A2A" Foreground="White"
+                                 BorderBrush="#C8A96E" BorderThickness="1"
+                                 Padding="8,0" VerticalContentAlignment="Center"/>
+
+                        <StackPanel Grid.Row="7" Orientation="Horizontal">
+                            <Button x:Name="btnSalvProdus"
+                                    Content="💾 SALVEAZĂ"
+                                    Height="38" Padding="15,0"
+                                    Background="#C8A96E" Foreground="#1A1A1A"
+                                    FontWeight="Bold" FontSize="12"
+                                    BorderThickness="0" Cursor="Hand"
+                                    Click="btnSalvProdus_Click"/>
+                            <Button Content="✕ ANULEAZĂ"
+                                    Height="38" Padding="15,0" Margin="8,0,0,0"
+                                    Background="Transparent" Foreground="#888888"
+                                    BorderBrush="#888888" BorderThickness="1"
+                                    FontSize="12" Cursor="Hand"
+                                    Click="btnAnuleaza_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <!-- Retete -->
+            <TabItem Header="📋 Editare Rețete">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Lista produse pentru retete -->
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Text="Selectați produsul:"
+                                   Foreground="#C8A96E" FontSize="13"
+                                   Margin="0,0,0,8"/>
+
+                        <ListView x:Name="listProduseRetete" Grid.Row="1"
+                                  Background="#2A2A2A" BorderThickness="0"
+                                  Foreground="White" FontSize="12"
+                                  SelectionChanged="listProduseRetete_SelectionChanged">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Produs" Width="220"
+                                                    DisplayMemberBinding="{Binding Nume}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+
+                    <!-- Reteta produsului -->
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" x:Name="txtNumeProdusSel"
+                                   Text="— selectați un produs —"
+                                   Foreground="#C8A96E" FontSize="14"
+                                   FontWeight="Bold" Margin="0,0,0,10"/>
+
+                        <ListView x:Name="listReteta" Grid.Row="1"
+                                  Background="#2A2A2A" BorderThickness="0"
+                                  Foreground="White" FontSize="13">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Ingredient" Width="180"
+                                                    DisplayMemberBinding="{Binding NumeIngredient}"/>
+                                    <GridViewColumn Header="Cantitate" Width="100"
+                                                    DisplayMemberBinding="{Binding Cantitate}"/>
+                                    <GridViewColumn Header="UM" Width="60"
+                                                    DisplayMemberBinding="{Binding Unitate}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <!-- Adaugare ingredient nou -->
+                        <Border Grid.Row="2" Background="#2A2A2A"
+                                BorderBrush="#C8A96E" BorderThickness="1"
+                                Padding="10" Margin="0,10,0,5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ComboBox Grid.Column="0" x:Name="cmbIngredient"
+                                          Height="32" Margin="0,0,8,0"
+                                          Background="#1A1A1A" Foreground="White"
+                                          BorderBrush="#C8A96E" BorderThickness="1"
+                                          FontSize="12"/>
+                                <TextBox Grid.Column="1" x:Name="txtCantitateIng"
+                                         Height="32" FontSize="12" Margin="0,0,8,0"
+                                         Background="#1A1A1A" Foreground="White"
+                                         BorderBrush="#C8A96E" BorderThickness="1"
+                                         Padding="6,0" VerticalContentAlignment="Center"/>
+                                <Button Grid.Column="2" Content="+ ADAUGĂ"
+                                        Height="32" Padding="10,0"
+                                        Background="#C8A96E" Foreground="#1A1A1A"
+                                        FontWeight="Bold" FontSize="11"
+                                        BorderThickness="0" Cursor="Hand"
+                                        Click="btnAdaugaIngredient_Click"/>
+                            </Grid>
+                        </Border>
+
+                        <Button Grid.Row="3" Content="💾 SALVEAZĂ REȚETA COMPLETĂ"
+                                Height="42" Background="#C8A96E" Foreground="#1A1A1A"
+                                FontWeight="Bold" FontSize="13"
+                                BorderThickness="0" Cursor="Hand"
+                                Click="btnSalveazaReteta_Click"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

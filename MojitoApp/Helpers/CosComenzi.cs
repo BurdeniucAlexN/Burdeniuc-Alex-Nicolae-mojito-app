@@ -30,6 +30,19 @@ namespace MojitoApp.Helpers
             }
         }
 
+        public static void ScadeCantitate(int idProdus)
+        {
+            var item = Items.FirstOrDefault(i => i.IdProdus == idProdus);
+            if (item != null)
+            {
+                if (item.Cantitate > 1)
+                    item.Cantitate--;
+                else
+                    Items.Remove(item);
+                CosActualizat?.Invoke();
+            }
+        }
+
         public static void Goleste()
         {
             Items.Clear();

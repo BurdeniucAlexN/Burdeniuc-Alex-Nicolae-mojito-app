@@ -108,23 +108,45 @@
                 </Border>
 
                 <!-- Lista produse in cos -->
+                <!-- Lista produse in cos -->
                 <ListView x:Name="listCos" Grid.Row="1"
-                          Background="#111111"
-                          BorderThickness="0"
-                          Foreground="White"
-                          FontSize="12">
+          Background="#111111"
+          BorderThickness="0"
+          Foreground="White"
+          FontSize="12">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Produs" Width="120"
-                                            DisplayMemberBinding="{Binding Nume}"/>
+                            <GridViewColumn Header="Produs" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Nume}"
+                                   TextTrimming="CharacterEllipsis"
+                                   ToolTip="{Binding Nume}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                             <GridViewColumn Header="Cant" Width="35"
-                                            DisplayMemberBinding="{Binding Cantitate}"/>
-                            <GridViewColumn Header="Preț" Width="65"
-                                            DisplayMemberBinding="{Binding Subtotal}"/>
+                            DisplayMemberBinding="{Binding Cantitate}"/>
+                            <GridViewColumn Header="Preț" Width="55"
+                            DisplayMemberBinding="{Binding Subtotal}"/>
+                            <GridViewColumn Header="" Width="30">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="✕"
+                                Width="22" Height="22"
+                                Background="#E74C3C"
+                                Foreground="White"
+                                BorderThickness="0"
+                                FontSize="10"
+                                Cursor="Hand"
+                                Tag="{Binding IdProdus}"
+                                Click="btnStergeItem_Click"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
-
                 <!-- Total -->
                 <Border Grid.Row="2" Background="#0D0D0D"
                         BorderBrush="#C8A96E" BorderThickness="0,1,0,1"

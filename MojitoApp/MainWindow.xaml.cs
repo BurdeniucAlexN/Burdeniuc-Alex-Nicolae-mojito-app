@@ -62,6 +62,7 @@ namespace MojitoApp
                 "angajati" => new AngajatiPage(),
                 "import" => new ImportPage(),
                 "rapoarte" => new RapoartePage(),
+                "adminmeniu" => new AdminMeniuPage(),
                 _ => null
             });
         }
@@ -116,6 +117,13 @@ namespace MojitoApp
             var login = new Views.LoginWindow();
             login.Show();
             this.Close();
+        }
+        private void btnStergeItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.Tag is int idProdus)
+            {
+                CosComenzi.StergeItem(idProdus);
+            }
         }
     }
 }

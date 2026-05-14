@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\alexb\OneDrive\Desktop\Burdeniuc-Alex-Nicolae-mojito-app\MojitoApp\App.xaml
-10-681717315
+11906199462
 22-1000577183
-282088546087
+291522988932
 215-2117262477
-MainWindow.xaml;Views\AngajatiPage.xaml;Views\BarPage.xaml;Views\BauturiPage.xaml;Views\EuropeanPage.xaml;Views\ImportPage.xaml;Views\JapanesePage.xaml;Views\LoginWindow.xaml;Views\RapoartePage.xaml;Views\StocuriPage.xaml;
+MainWindow.xaml;Views\AdminMeniuPage.xaml;Views\AngajatiPage.xaml;Views\BarPage.xaml;Views\BauturiPage.xaml;Views\EuropeanPage.xaml;Views\ImportPage.xaml;Views\JapanesePage.xaml;Views\LoginWindow.xaml;Views\RapoartePage.xaml;Views\StocuriPage.xaml;
 
 False
 
