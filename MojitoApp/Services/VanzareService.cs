@@ -12,15 +12,15 @@ namespace MojitoApp.Services
 {
     public class VanzareService
     {
-        public int CreeazaVanzare(int idAngajat, decimal total)
+        public int CreeazaVanzare(decimal total)
         {
             using var conn = DatabaseHelper.GetConnection();
             conn.Open();
             string query = @"INSERT INTO Vanzari (id_angajat, total) 
-                            VALUES (@a, @t);
-                            SELECT SCOPE_IDENTITY();";
+                    VALUES (@a, @t);
+                    SELECT SCOPE_IDENTITY();";
             using var cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@a", idAngajat);
+            cmd.Parameters.AddWithValue("@a", SessionManager.IdAngajat);
             cmd.Parameters.AddWithValue("@t", total);
             return Convert.ToInt32(cmd.ExecuteScalar());
         }

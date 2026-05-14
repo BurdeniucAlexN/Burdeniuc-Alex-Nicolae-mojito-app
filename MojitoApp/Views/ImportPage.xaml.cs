@@ -148,7 +148,7 @@ namespace MojitoApp.Views
             if (confirmare == MessageBoxResult.Yes)
             {
                 decimal total = produsGasite.Sum(i => i.Subtotal);
-                int idVanzare = _vanzareService.CreeazaVanzare(1, total);
+                int idVanzare = _vanzareService.CreeazaVanzare( total);
 
                 foreach (var item in produsGasite)
                 {

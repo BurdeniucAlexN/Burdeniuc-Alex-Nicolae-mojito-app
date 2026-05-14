@@ -57,12 +57,22 @@ namespace MojitoApp.Views
             {
                 using var conn = DatabaseHelper.GetConnection();
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Angajati WHERE username=@u AND parola_hash=@p";
+                string query = @"SELECT id, nume, prenume, rol FROM Angajati 
+                        WHERE username=@u AND parola_hash=@p";
                 using var cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@u", username);
                 cmd.Parameters.AddWithValue("@p", parolaHash);
-                int count = (int)cmd.ExecuteScalar();
-                return count > 0;
+                using var reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    SessionManager.SetAngajat(
+                        reader.GetInt32(0),
+                        reader.GetString(1) + " " + reader.GetString(2),
+                        reader.GetString(3)
+                    );
+                    return true;
+                }
+                return false;
             }
             catch { return false; }
         }

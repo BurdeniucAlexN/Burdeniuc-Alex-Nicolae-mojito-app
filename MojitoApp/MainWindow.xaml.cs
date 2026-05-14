@@ -16,6 +16,13 @@ namespace MojitoApp
             InitializeComponent();
             CosComenzi.CosActualizat += ActualizeazaCos;
             ActualizeazaCos();
+            txtAngajat.Text = SessionManager.NumeComplet;
+
+            // Ascunde butonul Admin Meniu daca nu e admin
+            if (!SessionManager.EsteAdmin)
+            {
+                btnAdminMeniu.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void ActualizeazaCos()
@@ -74,7 +81,7 @@ namespace MojitoApp
 
             if (confirmare == MessageBoxResult.Yes)
             {
-                int idVanzare = _vanzareService.CreeazaVanzare(1, CosComenzi.Total);
+                int idVanzare = _vanzareService.CreeazaVanzare( CosComenzi.Total);
 
                 foreach (var item in CosComenzi.Items)
                 {

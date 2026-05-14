@@ -19,9 +19,10 @@
                 <StackPanel Background="#0D0D0D" Height="120">
                     <Image Source="/Assets/logo.png" Height="55"
                            Margin="0,15,0,5" HorizontalAlignment="Center"/>
-                    <TextBlock x:Name="txtAngajat" Text="Admin"
-                               FontSize="12" Foreground="#888888"
-                               HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtAngajat"
+           Text="Admin"
+           FontSize="12" Foreground="#888888"
+           HorizontalAlignment="Center"/>
                 </StackPanel>
 
                 <Button Content="🍽  Bucătărie Europeană"
@@ -45,6 +46,10 @@
                 <Button Content="👥  Angajați"
                         Style="{StaticResource NavButton}"
                         Click="Nav_Click" Tag="angajati"/>
+                <Button x:Name="btnAdminMeniu"
+        Content="⚙  Admin Meniu"
+        Style="{StaticResource NavButton}"
+        Click="Nav_Click" Tag="adminmeniu"/>
                 <Button Content="📋  Import Comandă"
                         Style="{StaticResource NavButton}"
                         Click="Nav_Click" Tag="import"/>
