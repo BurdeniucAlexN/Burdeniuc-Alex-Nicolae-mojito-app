@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using Microsoft.Data.SqlClient;
 using MojitoApp.Helpers;
+using System.IO;
 
 namespace MojitoApp.Views
 {
@@ -177,6 +178,36 @@ namespace MojitoApp.Views
                     MessageBoxButton.OK, MessageBoxImage.Information);
 
             listDetalii.ItemsSource = lista;
+        }
+        private void btnExportCsv_Click(object sender, RoutedEventArgs e)
+        {
+            var vanzari = listVanzari.ItemsSource as List<VanzareDisplay>;
+            if (vanzari == null || vanzari.Count == 0)
+            {
+                MessageBox.Show("Nu există date de exportat!", "Atenție",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string fileName = $"Raport_Mojito_{DateTime.Now:dd-MM-yyyy_HH-mm}.csv";
+            string filePath = Path.Combine(desktop, fileName);
+
+            using var writer = new System.IO.StreamWriter(filePath, false,
+                System.Text.Encoding.UTF8);
+
+            // Header
+            writer.WriteLine("ID,Data si Ora,Angajat,Nr Produse,Total MDL");
+
+            // Date
+            foreach (var v in vanzari)
+                writer.WriteLine($"{v.Id},{v.DataOra},{v.NumeAngajat},{v.NrProduse},{v.Total}");
+
+            writer.WriteLine($",,,,");
+            writer.WriteLine($",,TOTAL PERIOADA,,{vanzari.Sum(v => v.Total)}");
+
+            MessageBox.Show($"✅ Export reușit!\nFișier salvat pe Desktop:\n{fileName}",
+                "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
